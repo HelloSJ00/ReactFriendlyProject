@@ -7,8 +7,8 @@ const result = ({ link }: { link: string }) => {
     return (
        <>
         <div>
-            <PositiveSummary link="https://www.naver.com" /> 
-            <NegativeSummary link="https://www.naver.com" />
+            <PositiveSummary/> 
+            <NegativeSummary/>
         </div>
        </>
     );

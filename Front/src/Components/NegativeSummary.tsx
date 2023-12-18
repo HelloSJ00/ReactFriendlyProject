@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { atom, useRecoilState } from 'recoil';
+import { linkState } from '../Recoil/LinkAtom';
 
-interface NegativeSummaryProps {
-    link: string; // 링크 prop으로 받아옴
-}
-
+// 부정적 요약 데이터 타입을 정의합니다.
 interface NegativeSummaryData {
     id: number;
     content: string;
 }
 
-const NegativeSummary: React.FC<NegativeSummaryProps> = ({ link }) => {
+const NegativeSummary: React.FC= () => {
+    const [link, setLink] = useRecoilState(linkState);
     const [negativeSummaryData, setNegativeSummaryData] = useState<NegativeSummaryData[]>([]);
 
     useEffect(() => {
@@ -28,7 +28,7 @@ const NegativeSummary: React.FC<NegativeSummaryProps> = ({ link }) => {
 
     return (
         <div>
-            <h2>부정적인 요약</h2>
+            <h2>부정적 요약</h2>
             <ul>
                 {negativeSummaryData.map((summary) => (
                     <li key={summary.id}>{summary.content}</li>

@@ -1,30 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState,useEffect } from 'react';
+import { atom, useRecoilState } from 'recoil';
+import {linkState} from '../Recoil/LinkAtom';
 
-interface PositiveSummaryProps {
-    link: string; // 링크 prop으로 받아옴
-}
-
+// 긍정적 요약 데이터 타입을 정의합니다.
 interface PositiveSummaryData {
     id: number;
     content: string;
 }
 
-const PositiveSummary: React.FC<PositiveSummaryProps> = ({ link }) => {
-    const [PositiveSummaryData, setPositiveSummaryData] = useState<PositiveSummaryData[]>([]);
+const PositiveSummary: React.FC = () => {
+    const [link, setLink] = useRecoilState(linkState);
+    const [PositiveSummaryData, setPositiveSummaryData] =  useState<PositiveSummaryData[]>([]);
 
     useEffect(() => {
         const fetchPositiveSummaryData = async () => {
             try {
-                const response = await fetch(`서버주소는 아직 없음 ${link}`);
+                const response = await fetch(`서버주소는 아직 없음`);
                 const data = await response.json();
-                setPositiveSummaryData(data); // 서버에서 받은 데이터로 PositiveSummaryData 업데이트
+                setPositiveSummaryData(data); // 상태 업데이트
             } catch (error) {
                 console.error('긍정적 요약 데이터를 가져오는 중 오류 발생:', error);
             }
         };
 
         fetchPositiveSummaryData();
-    }, [link]);
+    }, []); // 의존성 배열 비워서 마운트 시 한 번만 실행
 
     return (
         <div>

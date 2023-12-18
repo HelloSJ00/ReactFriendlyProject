@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { linkState } from '../recoil'; // Assuming you have a Recoil atom called "linkState"
 
 interface SearchBarProps {
     onSearch: (query: string) => void;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
-    const [searchLink, setSearchLink] = useState<string>('');  // 검색창에 입력한 링크
+    const [searchLink, setSearchLink] = useRecoilState(linkState);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchLink(event.target.value);
     };
 
-    const handleSearch = () => {// 검색 버튼 클릭 시
+    const handleSearch = () => {
         onSearch(searchLink);
     };
 
