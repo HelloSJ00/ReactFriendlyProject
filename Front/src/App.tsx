@@ -3,15 +3,15 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
 import Result from "./Pages/Result";
 
-function App() {
+const App: React.FC = () => {
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route path="/results" element={<Result />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/results" element={<Result link={""} />} />
       </Routes>
     </Router>
   );
-}
+};
 
 export default App;

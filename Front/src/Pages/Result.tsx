@@ -1,11 +1,16 @@
 import React from 'react';
+import PositiveSummary from '../Components/PositiveSummary';
+import NegativeSummary from '../Components/NegativeSummary';
 
-const result = () => {
+
+const result = ({ link }: { link: string }) => {
     return (
+       <>
         <div>
-            <h1>Result Page</h1>
-            <p>This is the result page.</p>
+            <PositiveSummary link="https://www.naver.com" /> 
+            <NegativeSummary link="https://www.naver.com" />
         </div>
+       </>
     );
 };
 

@@ -5,21 +5,21 @@ interface SearchBarProps {
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
-    const [searchLink, setSearchLink] = useState(''); 
+    const [searchLink, setSearchLink] = useState<string>('');  // 검색창에 입력한 링크
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchLink(event.target.value);
     };
 
-    const handleSearch = () => {
+    const handleSearch = () => {// 검색 버튼 클릭 시
         onSearch(searchLink);
     };
 
     return (
-        <div>
+        <>
             <input type="text" value={searchLink} onChange={handleInputChange} />
-            <button onClick={handleSearch}>Search</button>
-        </div>
+            <button onClick={handleSearch}>요약해버리기</button>
+        </>
     );
 };
 
