@@ -5,6 +5,9 @@
 
 import scrapy
 
+class CommentItem(scrapy.Item):
+    allReviews = scrapy.Field()
+
 
 class ServerItem(scrapy.Item):
     # define the fields for your item here like:
