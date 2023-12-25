@@ -8,6 +8,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service as ChromeService
+import json
 
 # WebDriver 옵션 설정
 options = Options()
@@ -65,14 +66,22 @@ def dynamicCrawlingReview(link:str):
             break  # 더 이상 요소가 없으므로 반복 종료
 
 
-    # 결과 출력
-    for text in all_reviews_texts:
-        print(text)
+    # # 결과 출력
+    # for text in all_reviews_texts:
+    #     print(text)
 
-    print(len(all_reviews_texts))
+    # print(len(all_reviews_texts))
+    
+    # 수강평 데이터를 JSON 형태로 변환
+    reviews_json = json.dumps(all_reviews_texts, ensure_ascii=False)
+
+    # JSON 파일로 저장
+    with open('reviews.json', 'w', encoding='utf-8') as f:
+        f.write(reviews_json)
+
 
     # 웹드라이버 종료
     driver.quit()
 
 # 수강평 크롤링 실행 함수
-dynamicCrawlingReview()
+# dynamicCrawlingReview()

@@ -13,17 +13,24 @@ const EntireSummary: React.FC= () => {
     const [EntireSummaryData, setEntireSummaryData] = useState<EntireSummaryData[]>([]);
 
     useEffect(() => {
-        const fetchEntireSummaryData = async () => {
+        const fetchEntireSummaryData = async (link:string) => {
             try {
-                const response = await fetch(`서버주소는 아직 없음 ${link}`);
+                const response = await fetch('서버주소', { 
+                    method: 'POST', // 요청 방식을 POST로 설정
+                    headers: {
+                        'Content-Type': 'application/json', // 컨텐트 타입을 JSON으로 설정
+                    },
+                    body: JSON.stringify({ link }), // 요청 본문에 link를 JSON 형식으로 전송
+                });
                 const data = await response.json();
                 setEntireSummaryData(data); // 서버에서 받은 데이터로 EntireSummaryData 업데이트
             } catch (error) {
                 console.error('수강평 요약 데이터를 가져오는 중 오류 발생:', error);
             }
         };
+        
 
-        fetchEntireSummaryData();
+        fetchEntireSummaryData(link);
     }, [link]);
 
     return (
