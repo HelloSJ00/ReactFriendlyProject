@@ -4,7 +4,7 @@ import { linkState } from '../Recoil/LinkAtom';
 
 //  요약 데이터 타입을 정의합니다.
 interface EntireSummaryData {
-    id: number;
+    id: string;
     content: string;
 }
 
@@ -15,7 +15,7 @@ const EntireSummary: React.FC= () => {
     useEffect(() => {
         const fetchEntireSummaryData = async (link:string) => {
             try {
-                const response = await fetch('서버주소', { 
+                const response = await fetch('http://127.0.0.1:8000/reviews', { 
                     method: 'POST', // 요청 방식을 POST로 설정
                     headers: {
                         'Content-Type': 'application/json', // 컨텐트 타입을 JSON으로 설정
@@ -24,12 +24,11 @@ const EntireSummary: React.FC= () => {
                 });
                 const data = await response.json();
                 setEntireSummaryData(data); // 서버에서 받은 데이터로 EntireSummaryData 업데이트
+                console.log(data); // 서버에서 받은 데이터 콘솔에 출력
             } catch (error) {
                 console.error('수강평 요약 데이터를 가져오는 중 오류 발생:', error);
             }
         };
-        
-
         fetchEntireSummaryData(link);
     }, [link]);
 
